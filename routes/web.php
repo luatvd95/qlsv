@@ -14,10 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('admin',function (){
-    return view('admin.index');
-});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('admin')->group(function (){
+    Route::get('/',function (){
+        return view('admin.index');
+    });
+
+    Route::get('student','SinhvienController@index')->name('student');
+});
+

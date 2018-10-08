@@ -10,20 +10,50 @@
         <div class="main-div">
             <div>
                 <h2>Admin Login</h2>
-                <p>Please enter your email and password</p>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
-            <form id="Login">
-                <div class="form-group">
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                </div>
-                <div class="forgot">
-                    <a href="reset.html">Forgot password?</a>
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
+            {!! Form::open(['route' => 'login']) !!}
+            <div class="form-group">
+                {!! Form::text('email',
+                      null,
+                      [
+                          'class'=>'form-control',
+                          'placeholder'=>'E-Mail Address'
+                      ]
+                )
+                !!}
+            </div>
+            <div class="form-group">
+                {!! Form::password('password',
+                      [
+                          'class'=>'form-control',
+                          'placeholder'=>'Password'
+                      ]
+                )
+                !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('remember','Remember Me') !!}
+                {!! Form::checkbox('remember', old('remember') ? 'true' : '') !!}
+            </div>
+            <div class="form-group">
+                {!! Form::submit('login',
+                      [
+                         'class'=>'btn btn-primary'
+                      ]
+                )
+                !!}
+            </div>
+
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
