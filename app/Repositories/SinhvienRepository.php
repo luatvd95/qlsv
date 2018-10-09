@@ -13,6 +13,7 @@ class SinhvienRepository implements RepositoryInterface
     }
     public function find($id)
     {
+
         $data = Sinhvien::find($id);
         return $data;
     }
