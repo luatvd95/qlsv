@@ -27,8 +27,21 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function userStudent(){
+    public function userStudent()
+	{
     	return $this->hasOne('App\Models\student','user_id', 'id');
+	}
+
+	public function hasPermission(Permission $permission)
+	{
+		if($this->role) {
+			if($this->role->permissons) {
+				if($this->role->permissons->contains($permission)){
+					return true;
+				}
+			}
+		}
+    	return false;
 	}
 
 
