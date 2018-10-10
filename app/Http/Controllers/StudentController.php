@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\StudentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\optional;
 
 class StudentController extends Controller
 {
@@ -21,6 +22,7 @@ class StudentController extends Controller
 
 	public function view()
 	{
+		$this->authorize('view-profile');
 		$profile=$this->student->getProfile();
 		return view('admin.profile',['title'=>'profile','profile'=>$profile]);
 	}
