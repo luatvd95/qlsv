@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'user_name', 'email', 'password','role',
     ];
 
     /**
@@ -26,4 +26,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function userStudent()
+	{
+    	return $this->hasOne('App\Models\student','user_id', 'id');
+	}
+
+	public function hasPermission(Permission $permission)
+	{
+		if($this->role) {
+			if($this->role->permissons) {
+				if($this->role->permissons->contains($permission)){
+					return true;
+				}
+			}
+		}
+    	return false;
+	}
+
+
 }

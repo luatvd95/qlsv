@@ -11,19 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function (){
-    Route::get('/',function (){
-        return view('admin.index');
-    });
 
-    Route::get('student','SinhvienController@index')->name('student');
+    Route::get('index','StudentController@index')->name('admin.index');
+
+    Route::get('profile','StudentController@view')->name('admin.profile');
+
 });
+
+Route::get('/', function () {
+	return view('welcome');
+});
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
