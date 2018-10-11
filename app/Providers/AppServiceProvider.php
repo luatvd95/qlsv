@@ -24,8 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            'App\Repositories\SinhvienRepository'
+		$this->app->bind(
+			\App\Repositories\StudentInterface::class,
+			\App\Repositories\StudentRepository::class
         );
     }
 }
