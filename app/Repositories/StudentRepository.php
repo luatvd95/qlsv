@@ -8,35 +8,21 @@
 
 namespace App\Repositories;
 
-
-use App\User;
 use Illuminate\Support\Facades\Auth;
 
-class StudentRepository implements RepositoryInterface
+class StudentRepository extends EloquentRepository implements StudentInterface
 {
-	public function all()
+	public function getModel()
 	{
-		// TODO: Implement all() method.
-	}
-
-	public function find($id)
-	{
-		$user = User::find($id);
-
-		return $user;
-	}
-
-	public function getName()
-	{
-		$name_student = $this->find(Auth::id())->userStudent->name;
-
-		return $name_student;
+		return \App\Models\student::class;
 	}
 
 	public function getProfile()
 	{
 		$profile_user = $this->find(Auth::id());
+
 		$profile_student=$profile_user->userStudent;
+		dd($profile_user);
 		$data = [
 			'name' => $profile_student->name,
 			'email' => $profile_user->email,
@@ -51,3 +37,4 @@ class StudentRepository implements RepositoryInterface
 	}
 
 }
+

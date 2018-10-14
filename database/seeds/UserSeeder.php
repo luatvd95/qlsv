@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
 			$user->user_name='luatvd95';
 			$user->email='nhoccon05061995@gmail.com';
 			$user->password=Hash::make('123456');
-			$user->role=1;
+			$user->role_id=1;
 			$user->save();
 
 			$student = new \App\Models\student;

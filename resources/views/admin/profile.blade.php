@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 @section('content_admin')
-<table class="table">
+{{--<table class="table">
 	<tr>
 		<td>Name</td>
 		<td>{{$profile['name']}}</td>
@@ -21,5 +21,8 @@
 		<td>Age</td>
 		<td>{{$profile['age']}}</td>
 	</tr>
-</table>
+</table>--}}
+<pre>
+	{{print_r($profile)}}
+</pre>
 @endsection
